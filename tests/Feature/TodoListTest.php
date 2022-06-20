@@ -20,7 +20,7 @@ class TodoListTest extends TestCase
     public function test_fetch_todolist()
     {
         //preparation
-        TodoList::create(['name' => 'my list']);
+        TodoList::factory()->create();
         //action
         $response = $this->getJson(route('todo-list.store'));
 
