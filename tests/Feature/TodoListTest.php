@@ -6,7 +6,6 @@ use App\Models\TodoList;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use voku\helper\ASCII;
 
 class TodoListTest extends TestCase
 {
@@ -32,7 +31,7 @@ class TodoListTest extends TestCase
     public function test_fetch_all_todolist()
     {
         //action
-        $response = $this->getJson(route('todo-list.store'));
+        $response = $this->getJson(route('todo-list.index'));
 
         //assertion
         $this->assertEquals(1, $this->count($response->json()));
