@@ -16,4 +16,9 @@ class TodoListController extends Controller
     {
         return response($id);
     }
+
+    public function store()
+    {
+        return response('', 201);
+    }
 }
