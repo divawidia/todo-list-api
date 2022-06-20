@@ -6,6 +6,7 @@ use App\Models\TodoList;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use voku\helper\ASCII;
 
 class TodoListTest extends TestCase
 {
@@ -17,10 +18,19 @@ class TodoListTest extends TestCase
 
     use RefreshDatabase;
 
+    /**
+     * @var \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
+     */
+    private $list;
+
+    public function setUp():void
+    {
+        parent::setUp();
+        $this->list = TodoList::factory()->create();
+    }
+
     public function test_fetch_all_todolist()
     {
-        //preparation
-        TodoList::factory()->create();
         //action
         $response = $this->getJson(route('todo-list.store'));
 
@@ -30,15 +40,12 @@ class TodoListTest extends TestCase
 
     public function test_fetch_single_todolist()
     {
-        //preparation
-        $list = TodoList::factory()->create();
-
         //action
-        $response = $this->getJson(route('todo-list.show', $list->id))
+        $response = $this->getJson(route('todo-list.show', $this->list->id))
                     ->assertOk()
                     ->json();
 
         //assertion
-        $this->assertEquals($response['name'], $list->name);
+        $this->assertEquals($response['name'], $this->list->name);
     }
 }
