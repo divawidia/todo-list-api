@@ -13,7 +13,7 @@ class TodoListTest extends TestCase
      *
      * @return void
      */
-    public function test_store_todolist()
+    public function test_fetch_todolist()
     {
         //preparation
 
