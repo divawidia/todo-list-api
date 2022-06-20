@@ -47,4 +47,14 @@ class TodoListTest extends TestCase
         //assertion
         $this->assertEquals($response['name'], $this->list->name);
     }
+
+    public function test_store_new_todolist()
+    {
+        //preparation
+
+        //action
+        $this->postJson(route('todo-list.store'))->assertCreated();
+
+        //assertion
+    }
 }
