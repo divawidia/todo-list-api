@@ -77,6 +77,6 @@ class TodoListTest extends TestCase
         $this->deleteJson(route('todo-list.destroy', $this->list->id))
             ->assertNoContent();
 
-        $this->assertDatabaseMissing('todo_list', ['name' => $this->list->name]);
+        $this->assertDatabaseMissing('todo_lists', ['name' => $this->list->name]);
     }
 }

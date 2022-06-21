@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TodoList;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class TodoListController extends Controller
 {
@@ -23,6 +24,12 @@ class TodoListController extends Controller
 
         $list = TodoList::create($request->all());
         return $list;
+    }
+
+    public function destroy(TodoList $id)
+    {
+        $id->delete();
+        return response('', Response::HTTP_NO_CONTENT);
     }
 
 }
