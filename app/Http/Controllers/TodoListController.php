@@ -26,6 +26,12 @@ class TodoListController extends Controller
         return $list;
     }
 
+    public function update(Request $request, TodoList $id)
+    {
+        $id->update($request->all());
+        return response($id);
+    }
+
     public function destroy(TodoList $id)
     {
         $id->delete();
