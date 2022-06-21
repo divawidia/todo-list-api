@@ -88,4 +88,13 @@ class TodoListTest extends TestCase
         $this->assertDatabaseHas('todo_lists', ['id' => $this->list->id, 'name'=>'updated name']);
 
     }
+
+    public function test_update_todolist_name_validation()
+    {
+        $this->withExceptionHandling();
+
+        $this->patchJson(route('todo-list.update', $this->list->id))
+            ->assertUnprocessable()
+            ->assertJsonValidationErrors(['name']);
+    }
 }

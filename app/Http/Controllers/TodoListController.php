@@ -28,6 +28,8 @@ class TodoListController extends Controller
 
     public function update(Request $request, TodoList $id)
     {
+        $request->validate(['name'=>['required']]);
+
         $id->update($request->all());
         return response($id);
     }
