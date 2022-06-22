@@ -29,7 +29,7 @@ class TodoListTest extends TestCase
     {
         $list = $this->createTodoList();
         $task = $this->createTask(['todo_list_id' => $list->id]);
-        $task2 = $this->createTask();
+        $task2 = $this->createTask(['todo_list_id' => $list->id]);
 
 
         $list->delete();
