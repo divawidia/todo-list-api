@@ -23,3 +23,4 @@ Route::apiResource('todo-list', TodoListController::class);
 //Route::delete('todo-list/{id}/delete', [TodoListController::class, 'destroy'])->name('todo-list.destroy');
 //
 Route::get('task', [TaskController::class, 'index'])->name('task.index');
+Route::post('task', [TaskController::class, 'store'])->name('task.store');
