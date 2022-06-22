@@ -42,4 +42,14 @@ class TaskTest extends TestCase
         $this->assertEquals($task->title, $response['title']);
         $this->assertDatabaseHas('tasks', ['title'=>$task->title]);
     }
+
+    public function test_delete_task()
+    {
+        //preparation
+        $task = Task::factory()->create();
+
+        //action
+        $this->deleteJson(route('task.destroy', $task->id))->assertNoContent();
+        $this->assertDatabaseMissing('tasks', ['title'=>$task->title]);
+    }
 }
