@@ -17,7 +17,7 @@ class CreateTasksTable extends Migration
             $table->id();
             $table->string('title');
             $table->unsignedBigInteger('todo_list_id');
-            $table->boolean('completed')->default(false);
+            $table->string('status')->default(\App\Models\Task::NOT_STARTED);
             $table->timestamps();
         });
     }
