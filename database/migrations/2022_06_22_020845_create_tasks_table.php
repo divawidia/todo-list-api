@@ -17,6 +17,7 @@ class CreateTasksTable extends Migration
             $table->id();
             $table->string('title');
             $table->unsignedBigInteger('todo_list_id');
+            $table->boolean('completed')->default(false);
             $table->timestamps();
         });
     }
