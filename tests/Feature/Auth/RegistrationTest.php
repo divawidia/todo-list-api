@@ -13,10 +13,17 @@ class RegistrationTest extends TestCase
      *
      * @return void
      */
+    use RefreshDatabase;
+
     public function test_user_can_register()
     {
-        $this->postJson(route('user.register'));
+        $this->postJson(route('user.register'),[
+            'name' => 'Dipa',
+            'email' => 'user@gmail.com',
+            'password' => 'user123',
+            'password_confirmation' => 'user123',
+        ])->assertCreated();
 
-        $this->assertDatabaseHas(users, ['name' => 'Dipa']);
+        $this->assertDatabaseHas('users', ['name' => 'Dipa']);
     }
 }
