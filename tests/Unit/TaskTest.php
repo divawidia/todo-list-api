@@ -2,7 +2,9 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use App\Models\TodoList;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class TaskTest extends TestCase
 {
@@ -11,8 +13,13 @@ class TaskTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    use RefreshDatabase;
+
+    public function test_Task_belongs_to_relationship()
     {
-        $this->assertTrue(true);
+        $list = $this->createTodoList();
+        $task = $this->createTask(['todo_list_id' => $list->id]);
+
+        $this->assertInstanceOf(TodoList::class, $task->list);
     }
 }
