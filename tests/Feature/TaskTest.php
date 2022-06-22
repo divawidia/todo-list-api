@@ -18,10 +18,11 @@ class TaskTest extends TestCase
     public function test_fetch_all_task_of_a_todo_list()
     {
         //preparation
-        $task = Task::factory()->create();
+        $list = $this->createTodoList();
+        $task = $this->createTask();
 
         //action
-        $response = $this->getJson(route('task.index'))->assertOk()->json();
+        $response = $this->getJson(route('todo-list.task.index', $list->id))->assertOk()->json();
 
         //assertion
         $this->assertEquals(1, $this->count($response));
@@ -31,10 +32,11 @@ class TaskTest extends TestCase
     public function test_store_task_for_todolist()
     {
         //preparation
+        $list = $this->createTodoList();
         $task = Task::factory()->make();
 
         //action
-        $response = $this->postJson(route('task.store'), ['title' => $task->title])
+        $response = $this->postJson(route('todo-list.task.store', $list->id), ['title' => $task->title])
             ->assertCreated()
             ->json();
 
@@ -46,7 +48,7 @@ class TaskTest extends TestCase
     public function test_delete_task()
     {
         //preparation
-        $task = Task::factory()->create();
+        $task = $this->createTask();
 
         //action
         $this->deleteJson(route('task.destroy', $task->id))->assertNoContent();
