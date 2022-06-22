@@ -16,10 +16,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::apiResource('todo-list', TodoListController::class);
-//Route::get('todo-list', [TodoListController::class, 'index'])->name('todo-list.index');
-//Route::get('todo-list/{id}', [TodoListController::class, 'show'])->name('todo-list.show');
-//Route::post('todo-list', [TodoListController::class, 'store'])->name('todo-list.store');
-//Route::patch('todo-list/{id}/update', [TodoListController::class, 'update'])->name('todo-list.update');
-//Route::delete('todo-list/{id}/delete', [TodoListController::class, 'destroy'])->name('todo-list.destroy');
 
-Route::apiResource('task', TaskController::class);
+Route::apiResource('todo-list.task', TaskController::class)->except('show')->shallow();
