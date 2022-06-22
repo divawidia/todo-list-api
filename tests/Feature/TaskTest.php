@@ -2,12 +2,14 @@
 
 namespace Tests\Feature;
 
+use App\Models\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class TaskTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic feature test example.
      *
@@ -16,7 +18,7 @@ class TaskTest extends TestCase
     public function test_fetch_all_task_of_a_todo_list()
     {
         //preparation
-        $task = Task::factory()-create();
+        $task = Task::factory()->create();
 
         //action
         $response = $this->getJson(route('task.index'))->assertOk()->json();
