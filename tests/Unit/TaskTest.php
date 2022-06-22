@@ -20,6 +20,6 @@ class TaskTest extends TestCase
         $list = $this->createTodoList();
         $task = $this->createTask(['todo_list_id' => $list->id]);
 
-        $this->assertInstanceOf(TodoList::class, $task->list);
+        $this->assertInstanceOf(TodoList::class, $task->todo_list);
     }
 }
