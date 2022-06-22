@@ -2,7 +2,10 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use App\Models\Task;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class TodoListTest extends TestCase
 {
@@ -11,8 +14,14 @@ class TodoListTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    use RefreshDatabase;
+
+    public function test_todolist_can_has_many()
     {
-        $this->assertTrue(true);
+        $list = $this->createTodoList();
+        $task = $this->createTask(['todo_list_id' => $list->id]);
+
+        $this->assertInstanceOf(Collection::class, $list->tasks->first());
+        $this->assertInstanceOf(Task::class, $list->tasks->first());
     }
 }
