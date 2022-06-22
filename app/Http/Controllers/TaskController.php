@@ -16,8 +16,9 @@ class TaskController extends Controller
         return response($task);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, TodoList $todoList)
     {
+        $request['todo_list_id'] = $todoList->id;
         $task = Task::create($request->all());
         return $task;
     }

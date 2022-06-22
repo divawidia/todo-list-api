@@ -16,13 +16,13 @@ abstract class TestCase extends BaseTestCase
         $this->withoutExceptionHandling();
     }
 
-    public function createTodoList()
+    public function createTodoList($args = [])
     {
-        return TodoList::factory()->create();
+        return TodoList::factory()->create($args);
     }
 
-    public function createTask()
+    public function createTask($args = [])
     {
-        return Task::factory()->create();
+        return Task::factory()->create($args);
     }
 }

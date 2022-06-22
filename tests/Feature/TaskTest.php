@@ -19,14 +19,14 @@ class TaskTest extends TestCase
     {
         //preparation
         $list = $this->createTodoList();
-        $task = $this->createTask();
-
+        $task = $this->createTask(['todo_list_id' => $list->id]);
         //action
         $response = $this->getJson(route('todo-list.task.index', $list->id))->assertOk()->json();
 
         //assertion
-        $this->assertEquals(1, $this->count($response));
+        $this->assertEquals(1, count($response));
         $this->assertEquals($task->title, $response[0]['title']);
+        $this->assertEquals($response[0]['todo_list_id'], $list->id);
     }
 
     public function test_store_task_for_todolist()
@@ -42,7 +42,7 @@ class TaskTest extends TestCase
 
         //assertion
         $this->assertEquals($task->title, $response['title']);
-        $this->assertDatabaseHas('tasks', ['title'=>$task->title]);
+        $this->assertDatabaseHas('tasks', ['title'=>$task->title, 'todo_list_id'=>$list->id]);
     }
 
     public function test_delete_task()
