@@ -39,7 +39,7 @@ class TaskTest extends TestCase
             ->json();
 
         //assertion
-        $this->assertEquals($task->name, $response['title']);
+        $this->assertEquals($task->title, $response['title']);
         $this->assertDatabaseHas('tasks', ['title'=>$task->title]);
     }
 }

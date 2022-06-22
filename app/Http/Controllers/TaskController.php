@@ -12,4 +12,10 @@ class TaskController extends Controller
         $task = Task::all();
         return response($task);
     }
+
+    public function store(Request $request)
+    {
+        $task = Task::create($request->all());
+        return $task;
+    }
 }
