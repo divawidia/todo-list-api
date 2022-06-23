@@ -9,8 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class TodoListController extends Controller
 {
-    public function index(){
-        $lists = TodoList::all();
+    public function index()
+    {
+        $lists = auth()->user()->todo_lists;
         return response($lists);
     }
 
@@ -21,8 +22,7 @@ class TodoListController extends Controller
 
     public function store(TodoListRequest $request)
     {
-        $list = TodoList::create($request->all());
-        return $list;
+        return auth()->user()->todo_lists()->create($request->validated());
     }
 
     public function update(TodoListRequest $request, TodoList $todo_list)

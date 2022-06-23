@@ -25,12 +25,14 @@ class TodoListTest extends TestCase
     public function setUp():void
     {
         parent::setUp();
-        $this->authUser();
-        $this->list = $this->createTodoList();
+        $user = $this->authUser();
+        $this->list = $this->createTodoList(['user_id' => $user->id]);
     }
 
     public function test_fetch_all_todolist()
     {
+        $this->createTodoList();
+
         //action
         $response = $this->getJson(route('todo-list.index'));
 
