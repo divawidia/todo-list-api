@@ -18,7 +18,7 @@ class LoginTest extends TestCase
 
     public function test_user_can_login()
     {
-        $user = User::factory()->create();
+        $user = $this->createUser();
 
         $response = $this->postJson(route('user.login'),[
             'email' => $user->email,
@@ -38,7 +38,7 @@ class LoginTest extends TestCase
 
     public function test_raise_error_if_password_is_incorrect()
     {
-        $user = User::factory()->create();
+        $user = $this->createUser();
 
         $response = $this->postJson(route('user.login'),[
             'email' => $user->email,
