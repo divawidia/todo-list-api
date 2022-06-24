@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Label;
 use App\Models\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -39,16 +40,17 @@ class TaskTest extends TestCase
     {
         //preparation
         $list = $this->createTodoList();
+        $label = $this->createLabel();
         $task = Task::factory()->make();
 
         //action
-        $response = $this->postJson(route('todo-list.task.store', $list->id), ['title' => $task->title])
+        $response = $this->postJson(route('todo-list.task.store', $list->id), ['title' => $task->title, 'label_id' => $label->id])
             ->assertCreated()
             ->json();
 
         //assertion
         $this->assertEquals($task->title, $response['title']);
-        $this->assertDatabaseHas('tasks', ['title'=>$task->title, 'todo_list_id'=>$list->id]);
+        $this->assertDatabaseHas('tasks', ['title' => $task->title, 'todo_list_id'=>$list->id, 'label_id' => $label->id]);
     }
 
     public function test_delete_task()

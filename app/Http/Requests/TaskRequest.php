@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LabelRequest extends FormRequest
+class TaskRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,9 @@ class LabelRequest extends FormRequest
     {
         return [
             'title' => ['required'],
-            'color' => ['required'],
+            'description' => ['sometimes'],
+            'label_id' => ['sometimes'],
+            'status' => ['sometimes'],
         ];
     }
 }
