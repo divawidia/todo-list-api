@@ -6,5 +6,8 @@ use Illuminate\Http\Request;
 
 class LabelController extends Controller
 {
-    //
+    public function store()
+    {
+
+    }
 }
